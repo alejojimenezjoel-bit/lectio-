@@ -47,11 +47,10 @@ body {
 
 /* ─────────── ONBOARDING ─────────── */
 .onboarding {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 2rem;
   /* Respeta la zona de la hora/batería en iPhone (safe area) */
   padding-top: max(2rem, env(safe-area-inset-top));
@@ -64,6 +63,10 @@ body {
   max-width: 640px;
   width: 100%;
   text-align: center;
+  /* Centra verticalmente cuando hay sitio, pero deja desplazar (sin cortar
+     el título por arriba) cuando el contenido es más alto que la pantalla. */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .brand-mark {
@@ -184,7 +187,7 @@ h1 em {
 
 /* ─────────── CHAT ─────────── */
 .chat {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.5s ease-out;
@@ -593,3 +596,16 @@ h1 em {
     padding: 1.5rem 1rem 1rem;
   }
 }
+
+/* Red de seguridad: cuando Lectio se abre como app instalada (PWA), garantiza
+   espacio suficiente arriba para no quedar tapado por la hora/batería, aunque
+   el cálculo automático de "safe area" del dispositivo fallara o diera 0. */
+@media (display-mode: standalone) {
+  .chat-header {
+    padding-top: max(2.75rem, env(safe-area-inset-top));
+  }
+  .onboarding {
+    padding-top: max(3rem, env(safe-area-inset-top));
+  }
+}
+
