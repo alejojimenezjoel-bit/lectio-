@@ -1,0 +1,588 @@
+/* app/globals.css
+   Todo el diseño de Lectio: la paleta cálida tipo pergamino, las tipografías
+   y la distribución de la pantalla. Si quieres cambiar colores o estilos, es aquí. */
+
+:root {
+  --bg: #f4ecdd;
+  --bg-soft: #ebe1cd;
+  --bg-card: #faf3e4;
+  --ink: #1f1812;
+  --ink-soft: #5a4d3e;
+  --ink-faint: #8b7d6a;
+  --accent: #6b1d28;
+  --accent-soft: #8a3540;
+  --gold: #a87f3e;
+  --gold-soft: #c4a262;
+  --divider: rgba(31, 24, 18, 0.12);
+  --divider-soft: rgba(31, 24, 18, 0.06);
+  --shadow: 0 1px 2px rgba(31, 24, 18, 0.04), 0 4px 16px rgba(31, 24, 18, 0.06);
+  --shadow-lg: 0 8px 32px rgba(31, 24, 18, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Lora", Georgia, serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  background-image: radial-gradient(circle at 20% 30%, rgba(168, 127, 62, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(107, 29, 40, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ─────────── ONBOARDING ─────────── */
+.onboarding {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.onboarding-inner {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.brand-mark {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  letter-spacing: 0.4em;
+}
+
+h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.35rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+  line-height: 1.4;
+}
+
+.tradition-prompt {
+  font-family: "Lora", serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.traditions {
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.tradition-card {
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-radius: 2px;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tradition-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.tradition-card:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.tradition-card:hover::before {
+  transform: scaleY(1);
+}
+
+.tradition-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.tradition-desc {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.onboarding-footer {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin-top: 2rem;
+}
+
+/* ─────────── CHAT ─────────── */
+.chat {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.chat-header {
+  border-bottom: 1px solid var(--divider);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(244, 236, 221, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.header-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.header-brand .name {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.header-brand .tradition-tag {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--divider);
+  color: var(--ink-soft);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-family: "Lora", serif;
+  font-size: 0.95rem;
+}
+
+.icon-btn:hover {
+  background: var(--bg-soft);
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 1rem 1rem;
+  scroll-behavior: smooth;
+}
+
+.messages-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.message {
+  margin-bottom: 2rem;
+  animation: messageIn 0.4s ease-out;
+}
+
+.message-meta {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+}
+
+.message.user .message-meta {
+  text-align: right;
+  color: var(--accent-soft);
+}
+
+.message.user .message-body {
+  background: var(--bg-soft);
+  padding: 1rem 1.25rem;
+  border-radius: 2px;
+  border-left: 2px solid var(--accent);
+  margin-left: 15%;
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.message.assistant .message-body {
+  font-family: "Lora", serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink);
+  padding-right: 5%;
+}
+
+.message.assistant .message-body p {
+  margin-bottom: 1rem;
+}
+
+.message.assistant .message-body p:last-child {
+  margin-bottom: 0;
+}
+
+.message.assistant .message-body em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.message.assistant .message-body strong {
+  font-weight: 600;
+}
+
+.crisis-info {
+  background: rgba(107, 29, 40, 0.08);
+  border-left: 3px solid var(--accent);
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+}
+
+.typing {
+  display: flex;
+  gap: 5px;
+  padding: 0.5rem 0;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: typingPulse 1.4s infinite ease-in-out;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.welcome-message {
+  text-align: center;
+  padding: 1rem 0 2rem;
+  border-bottom: 1px dashed var(--divider);
+  margin-bottom: 2rem;
+}
+
+.welcome-message .greeting {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-message .invitation {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.input-area {
+  border-top: 1px solid var(--divider);
+  padding: 1rem 1rem 1.25rem;
+  background: var(--bg);
+}
+
+.input-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--divider);
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-inner:focus-within {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(107, 29, 40, 0.08);
+}
+
+.message-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  color: var(--ink);
+  resize: none;
+  outline: none;
+  min-height: 24px;
+  max-height: 150px;
+  line-height: 1.5;
+}
+
+.message-input::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.send-btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.send-btn:hover:not(:disabled) {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.send-btn:disabled {
+  background: var(--ink-faint);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.footer-note {
+  text-align: center;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 0.75rem;
+  padding: 0 1rem;
+}
+
+.footer-note a {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 24, 18, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal {
+  background: var(--bg-card);
+  max-width: 540px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 2px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border-top: 3px solid var(--accent);
+}
+
+.modal h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.modal p {
+  margin-bottom: 0.85rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.modal strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.close-btn {
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  padding: 0.65rem 1.5rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--accent);
+}
+
+.close-btn.secondary {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--divider);
+}
+
+.close-btn.secondary:hover {
+  background: var(--bg-soft);
+  color: var(--ink);
+  border-color: var(--ink-soft);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingPulse {
+  0%,
+  60%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  30% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--divider);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+@media (max-width: 600px) {
+  .message.user .message-body {
+    margin-left: 5%;
+  }
+  .message.assistant .message-body {
+    padding-right: 0;
+  }
+  .messages-container {
+    padding: 1.5rem 1rem 1rem;
+  }
+}
