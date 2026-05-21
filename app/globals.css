@@ -53,6 +53,9 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  /* Respeta la zona de la hora/batería en iPhone (safe area) */
+  padding-top: max(2rem, env(safe-area-inset-top));
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
   overflow-y: auto;
   animation: fadeIn 0.8s ease-out;
 }
@@ -190,6 +193,8 @@ h1 em {
 .chat-header {
   border-bottom: 1px solid var(--divider);
   padding: 1rem 1.5rem;
+  /* Respeta la zona de la hora/batería en iPhone (safe area) */
+  padding-top: max(1rem, env(safe-area-inset-top));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -368,6 +373,8 @@ h1 em {
 .input-area {
   border-top: 1px solid var(--divider);
   padding: 1rem 1rem 1.25rem;
+  /* Respeta la barra de gestos inferior en iPhone (safe area) */
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
   background: var(--bg);
 }
 
